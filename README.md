@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BeautyClick   
  
 <h2>  Backend del proyecto BeautyCLIC en NodeJs</H2>  
@@ -89,3 +90,6 @@ contacto.controllers.js
 
 TODO:  Contacto.controller es para gestionar los formularios 
 TODO: cita.controllers.js , revisar las funciiones para que hagan las consultas adecuadas a cita.model.js
+=======
+# BeautyClick
+>>>>>>> 37629d8 (Initial commit)
