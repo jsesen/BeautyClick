@@ -18,11 +18,16 @@ public_html/storage
 public_html/hot
 
 storage/*.key
+<<<<<<< HEAD
 
+=======
+.env
+>>>>>>> 408da7f (Initial commit)
 Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+<<<<<<< HEAD
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 #git
@@ -54,7 +59,38 @@ public_html/hot
 
 storage/*.key
 .env
+<<<<<<< HEAD
 Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+=======
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+=======
+>>>>>>> 408da7f (Initial commit)
+>>>>>>> d2ce137 (Initial commit)
