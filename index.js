@@ -26,7 +26,7 @@ app.use(express.json());
 //per passar de json url a objectes javaScript
 app.use(express.urlencoded({extended:false}));
 //importar l'arxiu de rutes de product.routes
-const users = require('./routes/user.routes');
+const users = require('./users/routes/user.routes');
 
 //passem la instància app
 users.userRoutes(app);
