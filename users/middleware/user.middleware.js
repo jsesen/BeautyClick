@@ -5,14 +5,16 @@ exports.loginDecrypt = (request,response,next)=>{
 
     try{
         console.log('received login middleware');
-        response.locals.eou = crypto.decryptField(request.body.eou);
-        response.locals.password = crypto.decryptField(request.body.password);
-        
+        response.locals = crypto.processLogin(request.body.data,request.body.s,request.body.sign);
+               
 
-        if(response.locals.eou !== undefined && response.locals.password !== undefined){
+        if(response.locals !== null){
+            
             next();
+        }else{
+            return response.status(500).send({msg:'error'});
         }
-
+       
     }catch(error){
         throw error.message;
     }
@@ -25,11 +27,7 @@ exports.registerDecrypt = (request,response,next)=>{
 
     try{
         console.log('received register middleware');
-        response.locals.name = crypto.decryptField(request.body.name);
-        response.locals.username = crypto.decryptField(request.body.username);
-        response.locals.user_image = crypto.decryptField(request.body.user_image);
-        response.locals.email = crypto.decryptField(request.body.email);
-        response.locals.password = crypto.decryptField(request.body.password);
+        response.locals = crypto.processRegister(request.body.data,request.body.s,request.body.sign);
                 
         next();
         
