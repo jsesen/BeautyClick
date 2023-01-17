@@ -44,7 +44,7 @@ exports.registerUser = (request,response)=>{
 exports.loginUser = (request,response)=>{
 
     console.log('received loginUser request');
-        
+    console.log('response locals: ',response.locals);
 
     usersModel.loginUser(response.locals).then((user,error)=>{
 

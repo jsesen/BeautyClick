@@ -45,7 +45,7 @@ exports.loginUser = (info)=>{
                 console.log(result);
                 resolve(result);
             }else{
-                resolve(result);
+                resolve(undefined);
             }
         })
 
