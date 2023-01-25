@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('../../common/services/mongoose.service').mongoose;
+const mongoose = require('../common/services/mongoose.service').mongoose;
 
 
 const usersSchema = new mongoose.Schema({
