@@ -5,13 +5,13 @@ const mongoose = require('../common/services/mongoose.service').mongoose;
 
 const usersSchema = new mongoose.Schema({
         
-    name:{
+    nombre:{
         type:mongoose.Schema.Types.String
     },
-    username:{
+    apellidos:{
         type:mongoose.Schema.Types.String
     },
-    user_image:{
+    telefono:{
         type:mongoose.Schema.Types.String
     },
     email:{
