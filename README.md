@@ -8,7 +8,7 @@
     * `mongoose.service.js`  
 Aqui   se carga la configuracion de la base de datos desde el archivo `.env` que esta en la carpeta raiz 
 `.env`
-```php 
+```rs 
 #PRIV KEY
 PRIV_KEY = "-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAyfmKEnrvSjcF5GjHH8GtuJ75DsLWn9e5O1UE+utY3o7ygpnX
