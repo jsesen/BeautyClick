@@ -1,9 +1,12 @@
 'use strict'
 
 const citaModel = require('../models/cita.model'); 
-
+/**
+ * 
+ * @param {*} request 
+ * @param {*} response 
+ */
 exports.get_categorias = (request, response) => {
-
     console.log('recibido: GET categorias, request');
     //return response.status(200).send({id:request.params.id});
     
@@ -13,16 +16,29 @@ exports.get_categorias = (request, response) => {
         }
         if (categorias) {
             return response.status(200).send(categorias);
+        } else {            
+            return response.status(204);//no resultados
+        }
+    }).catch(error => {
+        throw error.message;
+    })    
+}
+exports.get_servicios = (request, response) => {
+    console.log('recibido: GET servicios, request'); 
+    citaModel.getServicios(request.params.id).then((servicios, error) => { 
+        
+        if (error) {
+            throw error.message;
+        }
+        if (servicios) {
+            return response.status(200).send(servicios);
         } else {
-            //204 no hay resultados
-            return response.status(204);
+            return response.status(204);//no resultados
         }
     }).catch(error => {
         throw error.message;
     })
-    
 }
-
 /**
  * TODO: falta implemntar el modelo de datos y la llamada
  *  
