@@ -1,6 +1,6 @@
 'use strict'
 
-const usersController = require('../controllers/user.controller');
+const usersController = require('../controllers/cliente.controller');
 const userMiddleware = require('../middleware/user.middleware');
 
 

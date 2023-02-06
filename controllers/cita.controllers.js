@@ -2,15 +2,76 @@
 
 const citaModel = require('../models/cita.model'); 
 
+exports.get_categorias = (request, response) => {
+
+    console.log('recibido: GET categorias, request');
+    //return response.status(200).send({id:request.params.id});
+    
+    citaModel.getCategorias().then((categorias, error) => {
+        if (error) {
+            throw error.message;
+        }
+        if (categorias) {
+            return response.status(200).send(categorias);
+        } else {
+            //204 no hay resultados
+            return response.status(204);
+        }
+    }).catch(error => {
+        throw error.message;
+    })
+    
+}
+
 /**
  * TODO: falta implemntar el modelo de datos y la llamada
  *  
  * @param {*} response 
  */
-exports.get_citas_servicio = (request, response) => {
+exports.get_trabajadores_servicio = (request, response) => {
+
+    console.log('recibido: GET trabajadores para un servicio, request');
+    console.log(request.params.id);
+    //return response.status(200).send({id:request.params.id});
+    /*
+    citaModel.getCitas().then((products, error) => {
+        if (error) {
+            throw error.message;
+        }
+        if (citas) {
+            return response.status(200).send(products);
+        } else {
+            //204 no hay resultados
+            return response.status(204);
+        }
+    }).catch(error => {
+        throw error.message;
+    })
+    */
+}
+exports.get_citas_trabajador_dia = (request, response) => {
 
     console.log('recibido: GET citas para un servicio, request');
-    citaModel.getCitas().then((products, error) => {
+    return response.status(200).send({id: request.params.id,trabajador:request.query.trabajador});
+    /*citaModel.getCitas().then((products, error) => {
+        if (error) {
+            throw error.message;
+        }
+        if (citas) {
+            return response.status(200).send(products);
+        } else {
+            //204 no hay resultados
+            return response.status(204);
+        }
+    }).catch(error => {
+        throw error.message;
+    })
+    */
+}
+exports.get_citas_cliente = (request, response) => {
+
+    console.log('recibido: GET citas para un cliente, request');
+    citaModel.getCitas().then((citas, error) => {
         if (error) {
             throw error.message;
         }
@@ -44,23 +105,7 @@ exports.guardar_cita = (request, response) => {
     })
     
 }
-exports.get_citas_cliente = (request, response) => {
 
-    console.log('recibido: GET citas para un cliente, request');
-    citaModel.getCitas().then((citas, error) => {
-        if (error) {
-            throw error.message;
-        }
-        if (citas) {
-            return response.status(200).send(products);
-        } else {
-            //204 no hay resultados
-            return response.status(204);
-        }
-    }).catch(error => {
-        throw error.message;
-    })
-}
 /*
 exports.uploadUserPic = (request, response) => {
 
