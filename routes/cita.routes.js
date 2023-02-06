@@ -9,21 +9,26 @@
  * Desde la pagina login se abre la pagina mis citas 
  * GET parametro: cliente, retorna lista de  {año,mes,dia,hora,minutos,servicio,duracion,trabajador}
  * 
- * FIXME: faltan PUT para modificar citas de cliente y DELETE para borrar desde pagina de mis citas de cliente
+ * TODO: faltan PUT para modificar citas de cliente y DELETE para borrar desde pagina de mis citas de cliente
  */
 'use strict'
 
-const citasController = require('../controllers/user.controller');
+const citasController = require('../controllers/cita.controllers');
 //const citasMiddleware = require('../middleware/user.middleware');
 
 
 exports.citasRoutes = function (app) {
-    //retorna citas para un servicio
-    app.get('/api/citas-servicio', [citasController.get_citas_servicio]);
-    //guardar cita para un servicio, trabajador y cliente
-    app.post('/api/cita-trabajador-cliente', [citasController.guardar_cita]);
+    //retorna trabajadores que hagan un servicio
+    app.get('/api/get_categorias', [citasController.get_categorias]);
+    //retorna trabajadores que hagan un servicio
+    app.get('/api/get_trabajadores_servicio/:id', [citasController.get_trabajadores_servicio]);
     // retorna citas de un cliente 
-    app.get('/api/citas-cliente', [  citasController.get_citas_cliente]);
+    app.get('/api/get_citas_trabajador_dia', [citasController.get_citas_trabajador_dia]);
+    // retorna citas de un cliente 
+    app.get('/api/get_citas_cliente', [citasController.get_citas_cliente]);
+    //guardar cita para un servicio, trabajador y cliente
+    app.post('/api/post_cita_trabajador_cliente', [citasController.guardar_cita]);
+ 
     //app.put('/api/upload/user-pic', usersController.uploadUserPic);
 
 }

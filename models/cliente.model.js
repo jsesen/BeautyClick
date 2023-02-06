@@ -1,24 +1,24 @@
 'use strict'
 
 const mongoose = require('../common/services/mongoose.service').mongoose;
+const { Schema } = mongoose;
 
-
-const usersSchema = new mongoose.Schema({
+const usersSchema = new Schema({
         
     nombre:{
-        type:mongoose.Schema.Types.String
+        type: Schema.Types.String
     },
     apellidos:{
-        type:mongoose.Schema.Types.String
+        type: Schema.Types.String
     },
     telefono:{
-        type:mongoose.Schema.Types.String
+        type:Schema.Types.String
     },
     email:{
-        type:mongoose.Schema.Types.String
+        type:Schema.Types.String
     },
     password:{
-        type:mongoose.Schema.Types.String
+        type:Schema.Types.String
     }
 
 },{versionKey:false})

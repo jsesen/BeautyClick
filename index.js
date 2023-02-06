@@ -30,11 +30,12 @@ app.use(express.json());
 //per passar de json url a objectes javaScript
 app.use(express.urlencoded({extended:false}));
 //importar l'arxiu de rutes de product.routes
-const users = require('./routes/user.routes');
-
+const users = require('./routes/cliente.routes');
+const citas = require('./routes/cita.routes');
 //passem la instància app
 users.userRoutes(app);
-
+citas.citasRoutes(app);
+app.use('/public/img', express.static(__dirname + '/assets/img'));
 //executem el servidor per escoltar en el puerto 3000 i la ip localhost---->127.0.0.1
 app.listen(config.parsed.SERVER_PORT,'localhost',()=>{
     console.log('Server listening on port %s',config.parsed.SERVER_PORT);
