@@ -7,14 +7,8 @@
  * año | mes | dia| hora | minuto | trabajador | cliente | servicio(object id)
   
  * 
- * tabla categorias
- *    {
-        "nombre": "Depilación", 
-        "descripcion": "", 
-        "foto": "/img/categorias/depilacion.png"
-    }
  * Hay que crear dos schemas para trabajador y servicio y apuntar a la coleccion user que representa el cliente
- * servicio
+ * trabajador
  * --------------
  
  * id | nombre | foto:url+jpg | descripcion | duracion: minutos | categoria
@@ -36,13 +30,7 @@
  * --------------------------
  * id trabajador | id servicio
  * 
- *  
- * nombre |descripcion | foto | duracion| categorias(object id categorias)
- * 
- * trabajadorServicio
- * trabajador | servicio
- * */
-
+ *  */
 
 
 'use strict'
@@ -146,8 +134,8 @@ const categoriasSchema = new Schema({
     nombre: {
         type: Schema.Types.String
     },
-    descripcion: {
-        type: Schema.Types.String
+    minutos:{
+        type:mongoose.Schema.Types.Number
     },
     foto: {
         type: Schema.Types.String

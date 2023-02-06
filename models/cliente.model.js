@@ -3,7 +3,7 @@
 const mongoose = require('../common/services/mongoose.service').mongoose;
 const { Schema } = mongoose;
 
-const clientesSchema = new Schema({
+const usersSchema = new Schema({
         
     nombre:{
         type: Schema.Types.String
@@ -23,7 +23,7 @@ const clientesSchema = new Schema({
 
 },{versionKey:false})
 
-clientesSchema.set('toJSON',{virtuals:false});
+usersSchema.set('toJSON',{virtuals:false});
 
 const Users = mongoose.model('users',usersSchema,'users');
 
