@@ -7,27 +7,21 @@
  * año | mes | dia| hora | minuto | trabajador | cliente | servicio(object id)
   
  * 
- * tabla categorias
- *    {
-        "nombre": "Depilación", 
-        "descripcion": "", 
-        "foto": "/img/categorias/depilacion.png"
-    }
  * Hay que crear dos schemas para trabajador y servicio y apuntar a la coleccion user que representa el cliente
- * servicio
+ * trabajador
  * --------------
  
  * id | nombre | foto:url+jpg | descripcion | duracion: minutos | categoria
  
  * 
- * trabajador
+ * servicio
  * -----
  
  * nombre |descripcion | foto | duracion| categorias(object id categorias)
  * 
  * trabajadorServicio
  * trabajador | servicio
- * */
+ * 
  
 // * id| nombre | apellidos | foto:url+jpg | horario: {dias(1-5) [Hinicio,Hsalida] email | telefono |}
  //*
@@ -39,13 +33,12 @@
  //*  */
 
 
-
 'use strict'
 
-const mongoose = require('../common/services/mongoose.service').mongoose;
+const mongoose = require('../common/services/mongoose.service').mongoose; 
  
-const cliente = require('./user.model');
-
+const { Schema } = mongoose;
+const cliente = require('./cliente.model');
 const citasSchema = new mongoose.Schema({
         
     anio:{
@@ -72,7 +65,6 @@ const citasSchema = new mongoose.Schema({
     servicios:[{
         type:mongoose.Schema.Types.ObjectId, ref:'Servicios'
     }]
-   
     
 
 },{versionKey:false})
@@ -136,25 +128,31 @@ serviciosSchema.set('toJSON',{virtuals:false});
 
 const Servicios = mongoose.model('servicios',serviciosSchema,'servicios');
  
-const { Schema } = mongoose;
-const cliente = require('./cliente.model');
+
 const categoriasSchema = new Schema({
 
     nombre: {
         type: Schema.Types.String
     },
-    descripcion: {
-        type: Schema.Types.String
+    minutos:{
+        type:mongoose.Schema.Types.Number
     },
     foto: {
         type: Schema.Types.String
-    } 
+    }
 
 }, { versionKey: false })
 
 categoriasSchema.set('toJSON', { virtuals: false });
 
 const Categorias = mongoose.model('categorias', categoriasSchema, 'categorias');
+
+serviciosSchema.set('toJSON',{virtuals:false});
+ 
+/**
+ * 
+ * @returns lista de categorias
+ */
 exports.getCategorias = () => {
     return new Promise((resolve, reject) => {
         Categorias.find({}).exec((error, result) => {
@@ -171,3 +169,25 @@ exports.getCategorias = () => {
     })
 }
  
+/**
+ * 
+ * @param {*} id de la categoria a la que pertenece el servicio
+ * @returns servicios que pertencen a la categoria del parametro id
+ */
+exports.getServicios = async (id_categoria) => {
+    try {
+        return await new Promise((resolve, reject) => {
+            Servicios.find().populate({ model: 'categoria', match: { _id: id_categoria } }).exec((error, result_1) => {
+                if (error) {
+                    reject(error.message);
+                    throw error.message;
+                }
+                if (result_1) {
+                    resolve(result_1);
+                }
+            });
+        });
+    } catch (error_1) {
+        throw error_1.message;
+    }
+}

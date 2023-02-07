@@ -37,12 +37,8 @@ exports.loginUser = (info)=>{
             if(error){
                 reject(error.message);
                 throw error.message;
-                
-            }
-            
+            }            
             if(result){
-                
-                console.log(result);
                 resolve(result);
             }else{
                 resolve(undefined);
@@ -55,7 +51,6 @@ exports.loginUser = (info)=>{
        
     
 }
-
 
 exports.registerUser = (user)=>{
 
