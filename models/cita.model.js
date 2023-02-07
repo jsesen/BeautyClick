@@ -29,14 +29,14 @@
  * trabajador | servicio
  * */
  
- * id| nombre | apellidos | foto:url+jpg | horario: {dias(1-5) [Hinicio,Hsalida] email | telefono |}
- *
- * 
- * relacion trabajador servicio
- * --------------------------
- * id trabajador | id servicio
- * 
- *  */
+// * id| nombre | apellidos | foto:url+jpg | horario: {dias(1-5) [Hinicio,Hsalida] email | telefono |}
+ //*
+ //* 
+ //* relacion trabajador servicio
+ //* --------------------------
+ //* id trabajador | id servicio
+ //* 
+ //*  */
 
 
 
