@@ -147,9 +147,6 @@ categoriasSchema.set('toJSON', { virtuals: false });
 
 const Categorias = mongoose.model('categorias', categoriasSchema, 'categorias');
 
- 
- 
- 
 serviciosSchema.set('toJSON',{virtuals:false});
  
 /**

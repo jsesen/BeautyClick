@@ -52,7 +52,6 @@ exports.loginUser = (info)=>{
     
 }
 
-
 exports.registerUser = (user)=>{
 
     try{
