@@ -22,11 +22,11 @@ exports.citasRoutes = function (app) {
     app.get('/api/get_categorias', [citasController.get_categorias]);
     //retorna servicios que pertenezcan a la categoria representada por el id
     app.get('/api/get_servicios/:id', [citasController.get_servicios]);
-
-
-    //retorna trabajadores que hagan un servicio
+    //retorna trabajadores que hagan un servicio (id)
     app.get('/api/get_trabajadores_servicio/:id', [citasController.get_trabajadores_servicio]);
-    // retorna citas de un cliente 
+
+
+    // retorna citas de un cliente
     app.get('/api/get_citas_trabajador_dia', [citasController.get_citas_trabajador_dia]);
     // retorna citas de un cliente 
     app.get('/api/get_citas_cliente', [citasController.get_citas_cliente]);

@@ -86,10 +86,7 @@ const trabajadoresSchema = new mongoose.Schema({
     },
     info:{
         type:mongoose.Schema.Types.String
-    },
-    servicios:[{
-        type:mongoose.Schema.Types.ObjectId, ref:'Servicios'
-    }],
+    },    
     foto:{
         type:mongoose.Schema.Types.String
     }
@@ -118,9 +115,9 @@ const serviciosSchema = new mongoose.Schema({
     foto:{
         type:mongoose.Schema.Types.String
     },
-    categoria:[{
-        type:mongoose.Schema.Types.ObjectId, ref:'Categorias'
-    }]
+    categoria:{
+        type:mongoose.Schema.Types.ObjectId, ref:'categorias'
+    }
 
 },{versionKey:false})
 
@@ -147,8 +144,44 @@ categoriasSchema.set('toJSON', { virtuals: false });
 
 const Categorias = mongoose.model('categorias', categoriasSchema, 'categorias');
 
-serviciosSchema.set('toJSON',{virtuals:false});
- 
+const servicio_trabajadorSchema = new mongoose.Schema({    
+    servicio: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'servicios'
+    },
+    trabajador: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'trabajadores'
+    }
+}, { versionKey: false })
+
+servicio_trabajadorSchema.set('toJSON', { virtuals: false });
+
+const Servicio_trabajador = mongoose.model('servicio_trabajador', servicio_trabajadorSchema, 'servicio_trabajador');
+/**
+ * 
+ * @param {*} id_servicio 
+ * @returns lista de trabajadores que realizan el servicio id_servicio
+ */
+exports.getTrabajadoresServicio = async (id_servicio) => {
+    try {
+        return await new Promise((resolve, reject) => {
+            console.log("id_servicio: ", id_servicio);
+            //Servicios.find({ categoria:id_categoria }).populate({path:'categoria'}).exec((error, result) => {
+            Servicio_trabajador.find({ servicio: id_servicio }).populate({  path:'trabajador'  }).exec((error, result) => {
+
+                if (error) {
+                    reject(error.message);
+                    throw error.message;
+                }
+                if (result) {
+                    resolve(result);
+                    console.log(result);
+                }
+            });
+        });
+    } catch (error) {
+        throw error.message;
+    }
+}
 /**
  * 
  * @returns lista de categorias
@@ -177,17 +210,21 @@ exports.getCategorias = () => {
 exports.getServicios = async (id_categoria) => {
     try {
         return await new Promise((resolve, reject) => {
-            Servicios.find().populate({ model: 'categoria', match: { _id: id_categoria } }).exec((error, result_1) => {
-                if (error) {
+            console.log("id_categoria: ", id_categoria);
+            //Servicios.find({ categoria:id_categoria }).populate({path:'categoria'}).exec((error, result) => {
+            Servicios.find({categoria:id_categoria}).exec((error, result) => {
+
+            if (error) {
                     reject(error.message);
                     throw error.message;
                 }
-                if (result_1) {
-                    resolve(result_1);
+                if (result) {
+                    resolve(result);
+                    console.log(result);
                 }
             });
         });
-    } catch (error_1) {
-        throw error_1.message;
+    } catch (error) {
+        throw error.message;
     }
 }
