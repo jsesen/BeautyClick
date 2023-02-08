@@ -25,6 +25,7 @@ exports.get_categorias = (request, response) => {
 }
 exports.get_servicios = (request, response) => {
     console.log('recibido: GET servicios, request'); 
+    console.log(request.params.id);
     citaModel.getServicios(request.params.id).then((servicios, error) => { 
         
         if (error) {
@@ -49,21 +50,19 @@ exports.get_trabajadores_servicio = (request, response) => {
     console.log('recibido: GET trabajadores para un servicio, request');
     console.log(request.params.id);
     //return response.status(200).send({id:request.params.id});
-    /*
-    citaModel.getCitas().then((products, error) => {
+    citaModel.getTrabajadoresServicio(request.params.id).then((trabajadores, error) => {
+
         if (error) {
             throw error.message;
         }
-        if (citas) {
-            return response.status(200).send(products);
+        if (trabajadores) {
+            return response.status(200).send(trabajadores);
         } else {
-            //204 no hay resultados
-            return response.status(204);
+            return response.status(204);//no resultados
         }
     }).catch(error => {
         throw error.message;
     })
-    */
 }
 exports.get_citas_trabajador_dia = (request, response) => {
 
