@@ -33,11 +33,13 @@ app.use(express.urlencoded({extended:false}));
 //importar l'arxiu de rutes de product.routes
 const users = require('./routes/cliente.routes');
 const citas = require('./routes/cita.routes');
+const newslist = require('./routes/newslist.routes');
 
 app.use(require('./routes/contacto.routes'));
 //passem la instància app
 users.userRoutes(app);
 citas.citasRoutes(app);
+newslist.newslistRoutes(app);
 app.use('/public/img', express.static(__dirname + '/assets/img'));
 app.use(express.static(path.join(__dirname,'components')))
 //executem el servidor per escoltar en el puerto 3000 i la ip localhost---->127.0.0.1
